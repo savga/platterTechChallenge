@@ -23,11 +23,31 @@
             --tracking-6pct: 6%;
 
             --color-text-primary: #1c1d1d;
-            --color-bg-secondary: #5c7962;
             --color-text-gray: #707070;
             --color-text-neutral-black: #231f20;
+            --color-text-neutral-gray: #ddd6d7;
+            --color-text-secondary-default: #5c553a;
+            --color-bg-secondary: #5c7962;
         }
-    </style>
+
+        .scroll-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background-color: var(--color-text-neutral-gray);
+            border-radius: 16px;
+        }
+        
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: var(--color-text-neutral-black);
+            border-radius: 16px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            height: 8px;
+        }
+</style>
 </head>
 <body class="p-8">
     <section class="">
@@ -38,9 +58,18 @@
             >
                 Best Sellers
             </h1>
-            <button>Shop All Best Sellers</button>
+            <a 
+                href="#" 
+                class="text-[var(--color-text-secondary-default)] font-poppins font-medium text-sm inline-flex items-center"
+                alt="Go to All Best Sellers"
+            >
+                Shop All Best Sellers
+                <svg class="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3.33334 10H16.6667M16.6667 10L11.6667 5M16.6667 10L11.6667 15" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </header>
-        <div class="flex overflow-x-auto whitespace-nowrap gap-5 p-4 snap-x snap-mandatory">
+        <div class="flex overflow-x-scroll whitespace-nowrap gap-5 p-4 snap-x snap-mandatory scroll-container">
             <product-card 
                 img-src="images/product_card1.jpg" 
                 img-alt="Makeup creams on a blue background"
