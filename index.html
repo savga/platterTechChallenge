@@ -6,6 +6,7 @@
     <title>Platter Tech Challenge 2025</title>
     <link rel="stylesheet" href="styles/components/products_slider.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
+    <script src="scripts/components/product-card.js" defer></script>
     <style type="text/tailwindcss">
         @theme {  
             --font-source-serif-4: "Source Serif 4", sans-serif;
@@ -26,8 +27,6 @@
             --color-text-neutral-black: #231f20;
         }
     </style>
-
-    
 </head>
 <body class="p-8">
     <section class="">
@@ -41,48 +40,15 @@
             <button>Shop All Best Sellers</button>
         </header>
         <div class="flex">
-            <article 
-                class="max-w-xs bg-white overflow-hidden"
-                aria-labelledby="product-title"
-            >
-                <figure class="relative">
-                    <img 
-                        src="images/product_card1.jpg" 
-                        alt="Makeup creams on a blue background" 
-                        class="w-full object-cover aspect-square rounded-xl"
-                    />
-                    <span 
-                        class="absolute top-2 left-2 bg-white border border-black rounded-2xl py-[3px] px-[8px]
-                        font-bebas-neue font-normal text-font-2xs uppercase tracking-6pct
-                        leading-[100%] text-center"
-                    >
-                        Best Seller
-                    </span>
-                </figure>
-
-                <div class="py-4 px-3 text-[var(--color-text-primary)]">
-                    <h2
-                        class="font-bebas-neue text-lg font-normal text-gray-900 uppercase tracking-3pct leading-[100%]"
-                    >
-                        Outside Vibes T-Shirt Sunshine
-                    </h2>
-
-                    <div class="flex items-center my-1" aria-label="4.5 out of 5 stars based on 1,234 reviews">
-                        <!-- Star rating (can later be replaced with SVG icons) -->
-                        <div class="flex text-[var(--color-text-neutral-black)]" aria-hidden="true">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span class="text-gray-300">★</span>
-                        </div>
-                        <span class="text-xs text-[var(--color-text-gray)] ml-2 font-poppins font-normal">1,234 reviews</span>
-                    </div>
-
-                    <p class="text-[var(--color-text-primary)] text-base font-medium font-poppins">$104.95</p>
-                </div>
-                </article>
-
+            <product-card 
+                img-src="images/product_card1.jpg" 
+                img-alt="Makeup creams on a blue background"
+                title="Outside Vibes T-Shirt Sunshine"
+                price="104.95"
+                badge="Best Seller"
+                rating="4.5"
+                reviews="1234"
+            ></product-card>
         </div>
     </section>
 </body>
