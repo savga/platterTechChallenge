@@ -8,7 +8,8 @@ class ProductCard extends HTMLElement {
         const imgAlt = this.getAttribute('img-alt') || '';
         const title = this.getAttribute('title') || 'Product Title';
         const price = this.getAttribute('price') || '$0.00';
-        const badge = this.getAttribute('badge') || '';
+        const leftBadge = this.getAttribute('left-badge') || '';
+        const rightBadge = this.getAttribute('right-badge') || '';
         const rating = parseFloat(this.getAttribute('rating')) || 0;
         const reviews = this.getAttribute('reviews') || '0';
 
@@ -19,14 +20,19 @@ class ProductCard extends HTMLElement {
         for (let i = 0; i < emptyStars; i++) starsHtml += '<span class="text-gray-300">★</span>';
 
         this.innerHTML = `
-          <article class="max-w-xs bg-white overflow-hidden">
+          <article class="flex-none w-sm overflow-hidden">
             <figure class="relative">
-              <img src="${imgSrc}" alt="${imgAlt}" class="w-full object-cover aspect-square rounded-xl" />
-              ${badge ? `<span 
+              <img src="${imgSrc}" alt="${imgAlt}" class="w-full object-cover aspect-square rounded-2xl" />
+              ${leftBadge ? `<span 
                 class="absolute top-2 left-2 bg-white border border-black rounded-2xl py-[3px] px-[8px]
                        font-bebas-neue font-normal text-font-2xs uppercase tracking-6pct
                        leading-[100%] text-center"
-              >${badge}</span>` : ''}
+              >${leftBadge}</span>` : ''}
+              ${rightBadge ? `<span 
+                class="absolute top-2 right-2 bg-[var(--color-bg-secondary)] border border-black rounded-2xl py-[3px] px-[8px]
+                       font-bebas-neue font-normal text-font-2xs uppercase tracking-6pct
+                       leading-[100%] text-center text-white"
+              >${rightBadge}</span>` : ''}
             </figure>
 
             <div class="py-4 px-3 text-[var(--color-text-primary)]">
