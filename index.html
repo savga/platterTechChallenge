@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/components/products_slider.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
     <script src="scripts/components/product-card.js" defer></script>
+    <script src="scripts/scripts.js" defer></script>
     <style type="text/tailwindcss">
         @theme {  
             --font-source-serif-4: "Source Serif 4", sans-serif;
@@ -14,7 +15,8 @@
             --font-poppins: "Poppins", sans-serif;
             
             --text-font-2xs: 0.625rem;
-            --text-component-header-size: 40px;
+            --text-component-header-size-desktop: 40px;
+            --text-component-header-size-mobile: 28px;
 
             --spacing-120pct: 120%;
 
@@ -49,18 +51,18 @@
         }
 </style>
 </head>
-<body class="p-8">
-    <section class="">
-        <header class="flex justify-between">
+<body class="p-2 md:p-8">
+    <section id="products-slider" class="my-4">
+        <header class="md:flex md:justify-between">
             <h1 
-                class="font-source-serif-4 text-component-header-size tracking--1pct spacing-120pct 
+                class="font-source-serif-4 md:text-component-header-size-desktop text-center md:text-left text-component-header-size-mobile tracking--1pct spacing-120pct 
                 font-black text-[var(--color-text-primary)] mb-4"
             >
                 Best Sellers
             </h1>
             <a 
                 href="#" 
-                class="text-[var(--color-text-secondary-default)] font-poppins font-medium text-sm inline-flex items-center"
+                class="text-[var(--color-text-secondary-default)] font-poppins font-medium text-sm md:inline-flex items-center hidden"
                 alt="Go to All Best Sellers"
             >
                 Shop All Best Sellers
@@ -69,7 +71,8 @@
                 </svg>
             </a>
         </header>
-        <div class="flex overflow-x-scroll whitespace-nowrap gap-5 p-4 snap-x snap-mandatory scroll-container">
+        <div id="products-container" 
+            class="flex flex-wrap md:flex-nowrap overflow-hidden overflow-x-scroll whitespace-nowrap gap-2 md:gap-4 scroll-container">
             <product-card 
                 img-src="images/product_card1.jpg" 
                 img-alt="Makeup creams on a blue background"
@@ -78,6 +81,7 @@
                 left-badge="Best Seller"
                 rating="4.5"
                 reviews="1234"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card2.jpg" 
@@ -88,6 +92,7 @@
                 right-badge="Save 15%"
                 rating="5"
                 reviews="1234"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card3.jpg" 
@@ -97,6 +102,7 @@
                 left-badge="Best Seller"
                 rating="5"
                 reviews="1234"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card4.jpg" 
@@ -106,7 +112,8 @@
                 left-badge="Best Seller"
                 right-badge="Save 15%"
                 rating="5"
-                reviews="1234"
+                reviews="124"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card5.jpg" 
@@ -116,7 +123,8 @@
                 left-badge="Top Seller"
                 right-badge="Save 25%"
                 rating="4"
-                reviews="1234"
+                reviews="134"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card6.jpg" 
@@ -126,6 +134,7 @@
                 right-badge="Save 75%"
                 rating="4"
                 reviews="1234"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card7.jpg" 
@@ -133,7 +142,8 @@
                 title="Great Headphones"
                 price="50.95"
                 rating="2"
-                reviews="1234"
+                reviews="124"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card8.jpg" 
@@ -142,7 +152,8 @@
                 price="750.95"
                 left-badge="Top Seller"
                 rating="5"
-                reviews="1234"
+                reviews="14"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card9.jpg" 
@@ -152,6 +163,7 @@
                 left-badge="New Seller"
                 rating="3"
                 reviews="1234"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
             <product-card 
                 img-src="images/product_card10.jpg" 
@@ -160,8 +172,12 @@
                 price="55.95"
                 rating="5"
                 reviews="1234"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
         </div>
+        <button id="show-more" class="font-poppins tracking--3pct font-semibold rounded-full bg-[var(--color-text-primary)] text-white w-full py-4 my-4 md:hidden hover:cursor-pointer hover:opacity-90" type="button">
+            Show More
+        </button>
     </section>
 </body>
 </html>

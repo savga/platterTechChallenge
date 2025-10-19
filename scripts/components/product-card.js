@@ -16,27 +16,27 @@ class ProductCard extends HTMLElement {
         const fullStars = Math.floor(rating);
         const emptyStars = 5 - fullStars;
         let starsHtml = '';
-        for (let i = 0; i < fullStars; i++) starsHtml += '<span>★</span>';
-        for (let i = 0; i < emptyStars; i++) starsHtml += '<span class="text-gray-300">★</span>';
+        for (let i = 0; i < fullStars; i++) starsHtml += '<span class="text-font-2xs md:text-xs">★</span>';
+        for (let i = 0; i < emptyStars; i++) starsHtml += '<span class="text-gray-300 text-font-2xs md:text-xs">★</span>';
 
         this.innerHTML = `
-          <article class="flex-none w-sm overflow-hidden">
+          <article class="flex-none">
             <figure class="relative">
-              <img src="${imgSrc}" alt="${imgAlt}" class="w-full object-cover aspect-square rounded-2xl" />
+              <img src="${imgSrc}" alt="${imgAlt}" class="w-full object-cover aspect-square rounded-xl" />
               ${leftBadge ? `<span 
-                class="absolute top-2 left-2 bg-white border border-black rounded-2xl py-[3px] px-[8px]
+                class="absolute top-2 left-1 bg-white border border-black rounded-2xl py-[4px] px-[8px]
                        font-bebas-neue font-normal text-font-2xs uppercase tracking-6pct
-                       leading-[100%] text-center"
+                       leading-[100%] text-center text-xs"
               >${leftBadge}</span>` : ''}
               ${rightBadge ? `<span 
-                class="absolute top-2 right-2 bg-[var(--color-bg-secondary)] border border-black rounded-2xl py-[3px] px-[8px]
+                class="absolute top-2 right-1 bg-[var(--color-bg-secondary)] border border-black rounded-2xl py-[4px] px-[8px]
                        font-bebas-neue font-normal text-font-2xs uppercase tracking-6pct
-                       leading-[100%] text-center text-white"
+                       leading-[100%] text-center text-white text-xs"
               >${rightBadge}</span>` : ''}
             </figure>
 
-            <div class="py-4 px-3 text-[var(--color-text-primary)]">
-              <h2 class="font-bebas-neue text-lg font-normal text-gray-900 uppercase tracking-3pct leading-[100%]">
+            <div class="p-[8px] md:p-[12px] text-[var(--color-text-primary)] flex flex-wrap md:flex-col">
+              <h2 class="font-bebas-neue text-base md:text-lg font-normal text-gray-900 uppercase tracking-3pct leading-[100%] whitespace-normal">
                 ${title}
               </h2>
 
