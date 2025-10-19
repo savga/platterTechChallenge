@@ -111,29 +111,45 @@ class ProductCard extends HTMLElement {
     let startX, startLeft;
 
     thumb.addEventListener("mousedown", (e) => {
-        e.preventDefault();
-        isDragging = true;
-        startX = e.clientX;
-        startLeft = parseInt(window.getComputedStyle(thumb).left, 10);
+      e.preventDefault();
+      isDragging = true;
+      startX = e.clientX;
+      startLeft = parseInt(window.getComputedStyle(thumb).left, 10);
     });
 
     document.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
+      if (!isDragging) return;
 
-        const dx = e.clientX - startX;
-        let newLeft = startLeft + dx;
+      const dx = e.clientX - startX;
+      let newLeft = startLeft + dx;
 
-        newLeft = Math.max(0, Math.min(newLeft, scrollbar.clientWidth - thumb.clientWidth));
-        thumb.style.left = newLeft + "px";
+      newLeft = Math.max(0, Math.min(newLeft, scrollbar.clientWidth - thumb.clientWidth));
+      thumb.style.left = newLeft + "px";
 
-        const scrollPercent = newLeft / (scrollbar.clientWidth - thumb.clientWidth);
-        scrollContainer.scrollLeft = scrollPercent * (scrollContainer.scrollWidth - scrollContainer.clientWidth);
+      const scrollPercent = newLeft / (scrollbar.clientWidth - thumb.clientWidth);
+      scrollContainer.scrollLeft = scrollPercent * (scrollContainer.scrollWidth - scrollContainer.clientWidth);
     });
 
     document.addEventListener("mouseup", () => {
-        isDragging = false;
+      isDragging = false;
     });
-  }
+
+    
+    scrollbar.addEventListener("mousedown", (e) => {
+      if (e.target === thumb) return;
+
+      const rect = scrollbar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+
+      let newLeft = clickX - thumb.clientWidth / 2;
+
+      newLeft = Math.max(0, Math.min(newLeft, scrollbar.clientWidth - thumb.clientWidth));
+      thumb.style.left = newLeft + "px";
+
+      const scrollPercent = newLeft / (scrollbar.clientWidth - thumb.clientWidth);
+      scrollContainer.scrollLeft = scrollPercent * (scrollContainer.scrollWidth - scrollContainer.clientWidth);
+    });
+  };
 
   calculateStarsRating = () => {
     const stars = this.querySelectorAll('.stars');
