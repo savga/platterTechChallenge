@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles/components/products_slider.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
     <script src="scripts/components/product-card.js" defer></script>
-    <script src="scripts/scripts.js" defer></script>
     <style type="text/tailwindcss">
         @theme {  
             --font-source-serif-4: "Source Serif 4", sans-serif;
@@ -37,19 +36,34 @@
     <section id="products-slider" class="my-4">
         <header class="md:flex md:justify-between">
             <h1 
-                class="font-source-serif-4 md:text-component-header-size-desktop text-center md:text-left text-component-header-size-mobile tracking--1pct spacing-120pct 
+                class="font-source-serif-4 md:text-component-header-size-desktop text-center 
+                md:text-left text-component-header-size-mobile tracking--1pct spacing-120pct 
                 font-black text-[var(--color-text-primary)] mb-4"
             >
                 Best Sellers
             </h1>
             <a 
                 href="#" 
-                class="text-[var(--color-text-secondary-default)] font-poppins font-medium text-sm md:inline-flex items-center hidden"
+                class="text-[var(--color-text-secondary-default)] font-poppins font-medium
+                text-sm md:inline-flex items-center hidden"
                 alt="Go to All Best Sellers"
             >
                 Shop All Best Sellers
-                <svg class="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M3.33334 10H16.6667M16.6667 10L11.6667 5M16.6667 10L11.6667 15" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg 
+                    class="ml-2 w-4 h-4" 
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 20 20" 
+                    fill="none"
+                >
+                    <path 
+                        d="M3.33334 10H16.6667M16.6667 10L11.6667 5M16.6667 10L11.6667 15" 
+                        stroke="#5C553A" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                    />
                 </svg>
             </a>
         </header>
@@ -61,7 +75,7 @@
                 title="Makeup creams on a blue background"
                 price="104.95"
                 left-badge="Best Seller"
-                rating="4.5"
+                data-rating="4.5"
                 reviews="1234"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -72,7 +86,7 @@
                 price="104.95"
                 left-badge="Best Seller"
                 right-badge="Save 15%"
-                rating="5"
+                data-rating="4.5"
                 reviews="1234"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -82,7 +96,7 @@
                 title="Parfum Chanel No 5"
                 price="104.95"
                 left-badge="Best Seller"
-                rating="5"
+                data-rating="3.3"
                 reviews="1234"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -93,7 +107,7 @@
                 price="104.95"
                 left-badge="Best Seller"
                 right-badge="Save 15%"
-                rating="5"
+                data-rating="2.5"
                 reviews="124"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -104,7 +118,7 @@
                 price="104.95"
                 left-badge="Top Seller"
                 right-badge="Save 25%"
-                rating="4"
+                data-rating="4"
                 reviews="134"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -114,7 +128,7 @@
                 title="Cool Ray Ban Glasses"
                 price="10.95"
                 right-badge="Save 75%"
-                rating="4"
+                data-rating="4.8"
                 reviews="1234"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -123,7 +137,7 @@
                 img-alt="Great Headphones"
                 title="Great Headphones"
                 price="50.95"
-                rating="2"
+                data-rating="2"
                 reviews="124"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -133,7 +147,7 @@
                 title="Tasty Chem Coffee"
                 price="750.95"
                 left-badge="Top Seller"
-                rating="5"
+                data-rating="5"
                 reviews="14"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -143,7 +157,7 @@
                 title="Vintage Headphones"
                 price="22.95"
                 left-badge="New Seller"
-                rating="3"
+                data-rating="3"
                 reviews="1234"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
@@ -152,17 +166,30 @@
                 img-alt="Lady Shoes"
                 title="Lady Shoes"
                 price="55.95"
-                rating="5"
+                data-rating="2.7"
                 reviews="1234"
                 class="flex-1 w-1/2 md:w-sm md:flex-none"
             ></product-card>
         </div>
-        <button id="show-more" class="font-poppins tracking--3pct font-semibold rounded-full bg-[var(--color-text-primary)] text-white w-full py-4 my-4 md:hidden hover:cursor-pointer hover:opacity-90" type="button">
+        <button 
+            id="show-more" 
+            class="font-poppins tracking--3pct font-semibold rounded-full 
+            bg-[var(--color-text-primary)] text-white w-full py-4 my-4 md:hidden 
+            hover:cursor-pointer hover:opacity-90" type="button"
+        >
             Show More
         </button>
 
-        <div id="custom-scrollbar" class="w-full h-[4px] hover:h-[6px] bg-[var(--color-text-neutral-gray)] cursor-pointer relative hidden md:block">
-            <div id="thumb" class="h-[4px] w-1/4 hover:h-[6px] bg-[var(--color-text-neutral-black)] absolute left-0"></div>
+        <div 
+            id="custom-scrollbar" 
+            class="w-full h-[4px] hover:h-[6px] bg-[var(--color-text-neutral-gray)] 
+            cursor-pointer relative hidden md:block"
+        >
+            <div 
+                id="thumb" 
+                class="h-[4px] w-1/4 hover:h-[6px] bg-[var(--color-text-neutral-black)] absolute left-0"
+            >
+            </div>
         </div>
     </section>
 </body>

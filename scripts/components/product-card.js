@@ -13,12 +13,6 @@ class ProductCard extends HTMLElement {
     const rating = parseFloat(this.getAttribute('rating')) || 0;
     const reviews = this.getAttribute('reviews') || '0';
 
-    const fullStars = Math.floor(rating);
-    const emptyStars = 5 - fullStars;
-    let starsHtml = '';
-    for (let i = 0; i < fullStars; i++) starsHtml += '<span class="text-font-2xs md:text-xs">★</span>';
-    for (let i = 0; i < emptyStars; i++) starsHtml += '<span class="text-gray-300 text-font-2xs md:text-xs">★</span>';
-
     this.innerHTML = `
       <article class="flex-none">
         <figure class="relative">
@@ -50,16 +44,101 @@ class ProductCard extends HTMLElement {
           </h2>
 
           <div class="flex items-center my-1" aria-label="${rating} out of 5 stars based on ${reviews} reviews">
-            <div class="flex text-[var(--color-text-neutral-black)]" aria-hidden="true">
-              ${starsHtml}
+            <div class="flex text-[var(--color-text-neutral-black)] stars" aria-hidden="true">
+              ★★★★★
             </div>
             <span class="text-xs text-[var(--color-text-gray)] ml-2 font-poppins font-normal">${reviews} reviews</span>
           </div>
 
-          <p class="text-[var(--color-text-primary)] text-base font-medium font-poppins">$${price}</p>
+          <p class="text-[var(--color-text-primary)] text-base font-medium font-poppins">
+            $${price}
+          </p>
         </div>
       </article>
     `;
+
+    this.calculateStarsRating();
+    this.handleViewportChange();
+
+    window.addEventListener("resize", () => this.handleViewportChange());
+  }  
+
+  isMobile = () => window.innerWidth <= 640;
+
+  showMoreButtonAction = () => {
+    const button = document.querySelector("#show-more");
+    const productsContainer = document.querySelector("#products-container");
+    const productsSlider = productsContainer.querySelectorAll("#products-slider article");
+
+    let productsCardsRowHeight = 0;
+    let dynamicClass;
+
+    for (let i = 0; i < 4; i++) {
+        const element = productsSlider[i];
+        productsCardsRowHeight += element.clientHeight;
+    }
+
+    productsCardsRowHeight = `${productsCardsRowHeight/2}px`;
+    dynamicClass = `max-h-[${productsCardsRowHeight}]`;
+    
+    productsContainer.classList.add(dynamicClass);
+
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        productsContainer.classList.remove(dynamicClass);
+        button.remove();
+    })
+  }
+
+  customScrollbar = () => {
+    const scrollContainer = document.getElementById("products-container");
+    const scrollbar = document.getElementById("custom-scrollbar");
+    const thumb = document.getElementById("thumb");
+
+    let isDragging = false;
+    let startX, startLeft;
+
+    thumb.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        isDragging = true;
+        startX = e.clientX;
+        startLeft = parseInt(window.getComputedStyle(thumb).left, 10);
+    });
+
+    document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+
+        const dx = e.clientX - startX;
+        let newLeft = startLeft + dx;
+
+        newLeft = Math.max(0, Math.min(newLeft, scrollbar.clientWidth - thumb.clientWidth));
+        thumb.style.left = newLeft + "px";
+
+        const scrollPercent = newLeft / (scrollbar.clientWidth - thumb.clientWidth);
+        scrollContainer.scrollLeft = scrollPercent * (scrollContainer.scrollWidth - scrollContainer.clientWidth);
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
+  }
+
+  calculateStarsRating = () => {
+    const stars = this.querySelectorAll('.stars');
+    const rating = this.dataset.rating || 0;
+
+    stars.forEach(star => {
+      star.style.setProperty('--rating', rating);
+    });
+  }
+
+  handleViewportChange = () => {
+    if (this.isMobile()) {
+      this.showMoreButtonAction();
+    } else {
+      this.customScrollbar();
+    }
   }
 }
 

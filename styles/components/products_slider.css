@@ -8,3 +8,14 @@
 #products-container::-webkit-scrollbar {
     display: none;
 }
+
+.stars {
+  background: linear-gradient(
+    90deg,
+    var(--color-text-neutral-black) calc(var(--rating) / 5 * 100%),
+    var(--color-text-neutral-gray) calc(var(--rating) / 5 * 100%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
