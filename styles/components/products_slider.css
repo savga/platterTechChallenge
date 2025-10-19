@@ -1,1 +1,10 @@
 @import url("../shared/fonts.css");
+
+#products-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#products-container::-webkit-scrollbar {
+    display: none;
+}

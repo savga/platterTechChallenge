@@ -31,24 +31,6 @@
             --color-text-secondary-default: #5c553a;
             --color-bg-secondary: #5c7962;
         }
-
-        .scroll-container::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .scroll-container::-webkit-scrollbar-track {
-            background-color: var(--color-text-neutral-gray);
-            border-radius: 16px;
-        }
-        
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: var(--color-text-neutral-black);
-            border-radius: 16px;
-        }
-
-        .scroll-container::-webkit-scrollbar-thumb:hover {
-            height: 8px;
-        }
 </style>
 </head>
 <body class="p-2 md:p-8">
@@ -72,7 +54,7 @@
             </a>
         </header>
         <div id="products-container" 
-            class="flex flex-wrap md:flex-nowrap overflow-hidden overflow-x-scroll whitespace-nowrap gap-2 md:gap-4 scroll-container">
+            class="flex flex-wrap md:flex-nowrap overflow-hidden overflow-x-scroll whitespace-nowrap gap-2 md:gap-4">
             <product-card 
                 img-src="images/product_card1.jpg" 
                 img-alt="Makeup creams on a blue background"
@@ -178,6 +160,10 @@
         <button id="show-more" class="font-poppins tracking--3pct font-semibold rounded-full bg-[var(--color-text-primary)] text-white w-full py-4 my-4 md:hidden hover:cursor-pointer hover:opacity-90" type="button">
             Show More
         </button>
+
+        <div id="custom-scrollbar" class="w-full h-[4px] hover:h-[6px] bg-[var(--color-text-neutral-gray)] cursor-pointer relative hidden md:block">
+            <div id="thumb" class="h-[4px] w-1/4 hover:h-[6px] bg-[var(--color-text-neutral-black)] absolute left-0"></div>
+        </div>
     </section>
 </body>
 </html>

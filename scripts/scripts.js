@@ -3,6 +3,7 @@ const showMoreButtonAction = () => {
     const productsContainer = document.querySelector("#products-container");
     const productsSlider = productsContainer.querySelectorAll("#products-slider article");
     const isMobile =  window.innerWidth <= 640;
+
     let productsCardsRowHeight = 0;
     let dynamicClass;
 
@@ -26,4 +27,38 @@ const showMoreButtonAction = () => {
     })
 }
 
+const customScrollbar = () => {
+    const scrollContainer = document.getElementById('products-container');
+    const scrollbar = document.getElementById('custom-scrollbar');
+    const thumb = document.getElementById('thumb');
+
+    let isDragging = false;
+    let startX, startLeft;
+
+    thumb.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDragging = true;
+        startX = e.clientX;
+        startLeft = parseInt(window.getComputedStyle(thumb).left, 10);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        const dx = e.clientX - startX;
+        let newLeft = startLeft + dx;
+
+        newLeft = Math.max(0, Math.min(newLeft, scrollbar.clientWidth - thumb.clientWidth));
+        thumb.style.left = newLeft + 'px';
+
+        const scrollPercent = newLeft / (scrollbar.clientWidth - thumb.clientWidth);
+        scrollContainer.scrollLeft = scrollPercent * (scrollContainer.scrollWidth - scrollContainer.clientWidth);
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+}
+
 showMoreButtonAction();
+customScrollbar();
