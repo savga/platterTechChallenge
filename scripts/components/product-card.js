@@ -5,6 +5,7 @@ class ProductCard extends HTMLElement {
 
   connectedCallback() {
     const imgName = this.getAttribute('img-name') || '';
+    const imgNameHover = this.getAttribute('img-name-hover') || '';
     const imgAlt = this.getAttribute('img-alt') || '';
     const title = this.getAttribute('title') || 'Product Title';
     const price = this.getAttribute('price') || '$0.00';
@@ -23,7 +24,17 @@ class ProductCard extends HTMLElement {
               ./images/${imgName}-800.jpg 800w
             "
             sizes="(max-width: 600px) 400px, (max-width: 900px) 800px"
-            class="w-full object-cover aspect-square rounded-xl"
+            class="w-full object-cover aspect-square rounded-xl default-image"
+            alt="${imgAlt}"
+          />
+          <img
+            src="./images/${imgNameHover}-1200.jpg"
+            srcset="
+              ./images/${imgNameHover}-400.jpg 400w,
+              ./images/${imgNameHover}-800.jpg 800w
+            "
+            sizes="(max-width: 600px) 400px, (max-width: 900px) 800px"
+            class="w-full object-cover aspect-square rounded-xl hover-image"
             alt="${imgAlt}"
           />
           ${leftBadge ? `<span 
