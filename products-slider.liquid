@@ -1,0 +1,131 @@
+<script src="{{ 'component-product-card.js' | asset_url }}" defer="defer"></script>
+{{ 'component-products-slider.css' | asset_url | stylesheet_tag }}
+{{ 'fonts.css' | asset_url | stylesheet_tag }}
+
+<section id="products-slider" class="my-4 page-width">
+    <header class="md:flex md:justify-between">
+        <h1 
+            class="font-source-serif-4 md:text-component-header-size-desktop text-center 
+            md:text-left text-component-header-size-mobile tracking--1pct spacing-120pct 
+            font-black text-[var(--color-text-primary)] mb-4"
+        >
+            {{ section.settings.title }}
+        </h1>
+        {%- assign button_label = section.settings.button_label -%}
+        {% if button_label != blank %}
+            <a 
+                href="{{ section.settings.button_url }}" 
+                class="text-[var(--color-text-secondary-default)] font-poppins font-medium
+                text-sm md:inline-flex items-center hidden"
+                alt="{{ button_label }}"
+            >
+                {{ button_label }}
+                <svg 
+                    class="ml-2 w-4 h-4" 
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 20 20" 
+                    fill="none"
+                >
+                    <path 
+                        d="M3.33334 10H16.6667M16.6667 10L11.6667 5M16.6667 10L11.6667 15" 
+                        stroke="#5C553A" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </a>
+        {% endif %}
+    </header>
+    <div id="products-container" 
+        class="flex flex-wrap md:flex-nowrap overflow-hidden overflow-x-scroll whitespace-nowrap gap-2 md:gap-4"
+    >
+        {%- for block in section.blocks -%}
+            {% assign product = block.settings.product %}
+            <product-card 
+                img-url="{{ product.featured_image | image_url }}" 
+                img-alt="{{ product.featured_image.alt | escape }}"
+                title="{{ product.title }}"
+                price="{{ product.price }}"
+                badges="{{ product.metafields.custom.badges }}"
+                data-rating="{{ product.metafields.custom.rating }}"
+                reviews="{{ product.metafields.custom.reviews }}"
+                class="flex-1 w-1/2 md:w-sm md:flex-none"
+            ></product-card>
+        {%- endfor -%}
+    </div>
+    <button 
+        id="show-more" 
+        class="font-poppins tracking--3pct font-semibold rounded-full 
+        bg-[var(--color-text-primary)] text-white w-full py-4 my-4 md:hidden 
+        hover:cursor-pointer hover:opacity-90" type="button"
+    >
+        {{ "sections.products-slider.show_more_label" | t }}
+    </button>
+
+    <div 
+        id="custom-scrollbar" 
+        class="w-full h-[4px] hover:h-[6px] bg-[var(--color-text-neutral-gray)] 
+        cursor-pointer relative hidden md:block"
+    >
+        <div 
+            id="thumb" 
+            class="h-[4px] w-1/4 hover:h-[6px] bg-[var(--color-text-neutral-black)] absolute left-0"
+        >
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.products-slider.name",
+  "max_blocks": 10,
+  "class": "products-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.products-slider.settings.title",
+    },           
+    {
+      "type": "header",
+      "content": "t:sections.products-slider.settings.header_info"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "t:sections.products-slider.settings.button_url"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.products-slider.settings.button_label"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "t:sections.products-slider.blocks.product_title.name",
+      "settings": [
+        {
+        "type": "product",
+        "id": "product",
+        "label": "t:sections.products-slider.blocks.settings.product_label",
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.products-slider.presets.name",
+      "blocks": [
+        {
+          "type": "product_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
