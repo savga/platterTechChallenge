@@ -44,8 +44,9 @@
     >
         {%- for block in section.blocks -%}
             {% assign product = block.settings.product %}
-            <product-card 
-                img-url="{{ product.featured_image | image_url }}" 
+            <product-card
+                img-url="{{ product.featured_image | image_url }}"
+                img-url-hover="{{ product.images[1] | image_url }}"
                 img-alt="{{ product.featured_image.alt | escape }}"
                 title="{{ product.title }}"
                 price="{{ product.price }}"
